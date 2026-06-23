@@ -1,0 +1,18 @@
+repos:
+  - repo: https://github.com/lorenzwalthert/precommit
+    rev: v0.4.3
+    hooks:
+      - id: style-files
+        args: [--style_pkg=styler, --style_fun=tidyverse_style]
+        # Define common exclusion pattern to exclude renv directory.
+        exclude: &exclude_pattern >
+          (?x)^(
+          renv/.*
+          )$
+      - id: lintr
+        verbose: true
+        exclude: *exclude_pattern
+      - id: use-tidy-description
+        exclude: *exclude_pattern
+      - id: deps-in-desc
+        exclude: *exclude_pattern

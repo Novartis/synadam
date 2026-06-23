@@ -1,0 +1,41 @@
+Package: synadam
+Title: Generate Synthetic ADaM Datasets
+Version: 0.3.0
+Authors@R: c(
+    person("David", "Zhang", , "david-1.zhang@novartis.com", role = c("aut", "cre")),
+    person("Thibaud", "Coroller", , "thibaud.coroller@novartis.com", role = "ctb"),
+    person("Peter", "Krusche", , "peter.krusche@novartis.com", role = "ctb"),
+    person("Chengyang", "Gao", , "chengyang.gao@novartis.com", role = "ctb"),
+    person("Novartis", "AG", role = c("cph"))
+    )
+Description: Generates synthetic ADaM (Analysis Data Model) datasets from real
+    clinical trial data. Preserves the structure of real datasets (column names,
+    value ranges, relationships between treatment and flag columns) while removing
+    identifiable patient information. Supports subject-level (ADSL), longitudinal
+    (BDS), occurrence (OCCDS), and time-to-event (TTE) dataset types.
+License: MIT + file LICENSE
+URL: https://github.com/Novartis/synadam
+BugReports: https://github.com/Novartis/synadam/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends:
+    R (>= 4.1.0)
+Imports:
+    checkmate,
+    dplyr,
+    glue,
+    haven,
+    rlang,
+    stats,
+    tidyr,
+    tools,
+    utils,
+    yaml
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+Config/roxygen2/version: 8.0.0
+RoxygenNote: 7.3.2

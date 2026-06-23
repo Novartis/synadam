@@ -1,0 +1,56 @@
+# R history and workspace files
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+
+# RStudio and R project artifacts
+.Rproj.user/
+*.Rproj
+
+# R build/check outputs
+.Rcheck/
+**/src/*.o
+**/src/*.so
+**/src/*.dll
+
+# Package docs built by R CMD build/check
+inst/doc/
+docs/
+
+# Quarto preview artifacts (slides only)
+*_files/
+
+# Vignettes build artifacts
+vignettes/*.html
+vignettes/*.pdf
+vignettes/*.R
+vignettes/.build
+
+# renv (if used)
+renv/library/
+renv/staging/
+renv/.lock
+renv/.cache/
+
+# Packrat (legacy)
+packrat/
+.packrat/
+
+# Local environment/config (keep in user home if needed)
+.Renviron
+
+# VS Code / IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Python virtual envs (common in mixed repos)
+.venv/
+venv/
+
+# exploratory code
+explore/
+/doc/
+/Meta/
