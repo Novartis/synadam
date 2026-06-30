@@ -1,0 +1,125 @@
+# synadam
+
+Generate synthetic ADaM (Analysis Data Model) datasets from real
+clinical trial data. `synadam` preserves the structure of real ADaM
+datasets (column names, relationships, ranges) while removing
+identifiable patient information — enabling development and testing of
+analysis pipelines without access to real data.
+
+## Key Features
+
+- **Privacy-preserving**: Synthetic data maintains structure without
+  exposing identifiable patient information.
+- **Multiple dataset types**: Supports ADSL, BDS (e.g. ADLB), OCCDS
+  (e.g. ADAE), and TTE (e.g. ADTTE).
+- **Auto-configuration**:
+  [`generate_study_config()`](https://novartis.github.io/synadam/reference/generate_study_config.md)
+  scans your ADaM directory and infers dataset types and column roles
+  automatically.
+- **Reproducible**: Deterministic output via random seeds.
+
+## Installation
+
+Install from GitHub:
+
+``` r
+
+# install.packages("remotes")
+remotes::install_github("Novartis/synadam")
+```
+
+## Quick Start
+
+``` r
+
+library(synadam)
+
+# 1. Auto-generate a YAML config from your ADaM directory. The config is
+#    written into output_dir, alongside where the synthetic data will land.
+yaml_path <- generate_study_config(
+ adam_dir   = "/path/to/adam_data/",
+ output_dir = "./syn_data",
+ seed       = 42
+)
+
+# 2. Review the generated YAML, then simulate
+simulate_study(yaml_path)
+```
+
+Synthetic datasets are saved as individual `.rds` files (e.g.,
+`syn_adsl.rds`, `syn_adlb.rds`) in the output directory.
+
+## Documentation
+
+For a full walkthrough including manual configuration and per-dataset
+control:
+
+``` r
+
+vignette("synadam", package = "synadam")
+```
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request
+on [GitHub](https://github.com/Novartis/synadam).
+
+## License
+
+This package is licensed under the MIT License. See
+[LICENSE](https://novartis.github.io/synadam/LICENSE) for details.
+
+# Package index
+
+## All functions
+
+- [`generate_study_config()`](https://novartis.github.io/synadam/reference/generate_study_config.md)
+  : Generate a draft study config YAML from a directory of ADaM files.
+- [`glimpse()`](https://novartis.github.io/synadam/reference/glimpse.md)
+  : Glimpse a vector.
+- [`glimpse_adsl()`](https://novartis.github.io/synadam/reference/glimpse_adsl.md)
+  : Glimpse an ADSL dataset.
+- [`glimpse_bds()`](https://novartis.github.io/synadam/reference/glimpse_bds.md)
+  : Glimpse a BDS dataset.
+- [`glimpse_id()`](https://novartis.github.io/synadam/reference/glimpse_id.md)
+  : Glimpse an ID vector.
+- [`glimpse_occds()`](https://novartis.github.io/synadam/reference/glimpse_occds.md)
+  : Glimpse an OCCDS dataset.
+- [`glimpse_occurrence_id_seq()`](https://novartis.github.io/synadam/reference/glimpse_occurrence_id_seq.md)
+  : Glimpse occurrence counts, ID columns, and sequence column.
+- [`glimpse_ordered()`](https://novartis.github.io/synadam/reference/glimpse_ordered.md)
+  : Glimpse ordered columns.
+- [`glimpse_param_visits()`](https://novartis.github.io/synadam/reference/glimpse_param_visits.md)
+  : Glimpse parameter and visit columns.
+- [`glimpse_params()`](https://novartis.github.io/synadam/reference/glimpse_params.md)
+  : Glimpse parameter columns.
+- [`glimpse_study()`](https://novartis.github.io/synadam/reference/glimpse_study.md)
+  : Glimpse all ADaM datasets for a study.
+- [`glimpse_treatment_flag()`](https://novartis.github.io/synadam/reference/glimpse_treatment_flag.md)
+  : Glimpse treatment and flag columns together.
+- [`glimpse_tte()`](https://novartis.github.io/synadam/reference/glimpse_tte.md)
+  : Glimpse a TTE dataset.
+- [`read_sas7bdat()`](https://novartis.github.io/synadam/reference/read_sas7bdat.md)
+  : Read in an ADaM dataset.
+- [`simulate()`](https://novartis.github.io/synadam/reference/simulate.md)
+  : Simulate a vector from a summary object.
+- [`simulate_adsl()`](https://novartis.github.io/synadam/reference/simulate_adsl.md)
+  : Simulate a synthetic ADSL.
+- [`simulate_bds()`](https://novartis.github.io/synadam/reference/simulate_bds.md)
+  : Simulate a synthetic BDS dataset.
+- [`simulate_occds()`](https://novartis.github.io/synadam/reference/simulate_occds.md)
+  : Simulate a synthetic OCCDS dataset.
+- [`simulate_study()`](https://novartis.github.io/synadam/reference/simulate_study.md)
+  : Simulate synthetic ADaM datasets for a study.
+- [`simulate_study_from_summary()`](https://novartis.github.io/synadam/reference/simulate_study_from_summary.md)
+  : Simulate synthetic ADaM datasets from a previously-saved study
+  summary.
+- [`simulate_tte()`](https://novartis.github.io/synadam/reference/simulate_tte.md)
+  : Simulate a synthetic TTE dataset.
+
+# Articles
+
+### All vignettes
+
+- [Getting Started with
+  synadam](https://novartis.github.io/synadam/articles/synadam.md):
