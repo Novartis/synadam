@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">synadam</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +54,7 @@
       <h1>Getting Started with synadam</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Novartis/synadam/blob/ci-pkgdown-test/vignettes/synadam.Rmd" class="external-link"><code>vignettes/synadam.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Novartis/synadam/blob/main/vignettes/synadam.Rmd" class="external-link"><code>vignettes/synadam.Rmd</code></a></small>
       <div class="d-none name"><code>synadam.Rmd</code></div>
     </div>
 
@@ -169,13 +169,13 @@ roles. Fields with weaker signal are tagged with inline
 <span><span class="co">#&gt; # Fields marked REVIEW were inferred with low confidence -</span></span>
 <span><span class="co">#&gt; # verify them before running simulate_study().</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; output_dir: "/tmp/RtmpRlLoMo/syn_output"</span></span>
+<span><span class="co">#&gt; output_dir: "/tmp/RtmpuS86XG/syn_output"</span></span>
 <span><span class="co">#&gt; seed: 42</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; datasets:</span></span>
 <span><span class="co">#&gt;   adae:</span></span>
 <span><span class="co">#&gt;     dataset_type: "occds"</span></span>
-<span><span class="co">#&gt;     path: "/tmp/RtmpRlLoMo/adam_data/adae.sas7bdat"</span></span>
+<span><span class="co">#&gt;     path: "/tmp/RtmpuS86XG/adam_data/adae.sas7bdat"</span></span>
 <span><span class="co">#&gt;     id_cols: [USUBJID]</span></span>
 <span><span class="co">#&gt;     seq_col: AESEQ</span></span>
 <span><span class="co">#&gt;     flag_cols: []</span></span>
@@ -184,7 +184,7 @@ roles. Fields with weaker signal are tagged with inline
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   adlb:</span></span>
 <span><span class="co">#&gt;     dataset_type: "bds"</span></span>
-<span><span class="co">#&gt;     path: "/tmp/RtmpRlLoMo/adam_data/adlb.sas7bdat"</span></span>
+<span><span class="co">#&gt;     path: "/tmp/RtmpuS86XG/adam_data/adlb.sas7bdat"</span></span>
 <span><span class="co">#&gt;     id_cols: [USUBJID]</span></span>
 <span><span class="co">#&gt;     param_cols: [PARAM, PARAMCD]</span></span>
 <span><span class="co">#&gt;     visit_cols: [AVISIT, AVISITN]  # REVIEW: visit_cols are optional</span></span>
@@ -194,7 +194,7 @@ roles. Fields with weaker signal are tagged with inline
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   adsl:</span></span>
 <span><span class="co">#&gt;     dataset_type: "adsl"</span></span>
-<span><span class="co">#&gt;     path: "/tmp/RtmpRlLoMo/adam_data/adsl.sas7bdat"</span></span>
+<span><span class="co">#&gt;     path: "/tmp/RtmpuS86XG/adam_data/adsl.sas7bdat"</span></span>
 <span><span class="co">#&gt;     id_cols: [USUBJID, SUBJID]</span></span>
 <span><span class="co">#&gt;     treatment_cols: [TRT01A, TRT01AN]</span></span>
 <span><span class="co">#&gt;     flag_cols: [SAFFL, ITTFL, EFFFL]  # REVIEW: matched *FL pattern</span></span>
@@ -222,7 +222,7 @@ datasets:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">synadam</span><span class="fu">::</span><span class="fu"><a href="../reference/simulate_study.html">simulate_study</a></span><span class="op">(</span>config_path <span class="op">=</span> <span class="va">yaml_path</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ----- Glimpsing adsl (adsl) dataset -----</span></span>
-<span><span class="co">#&gt; Loading dataset from /tmp/RtmpRlLoMo/adam_data/adsl.sas7bdat</span></span>
+<span><span class="co">#&gt; Loading dataset from /tmp/RtmpuS86XG/adam_data/adsl.sas7bdat</span></span>
 <span><span class="co">#&gt; Glimpsing treatment/flag columns</span></span>
 <span><span class="co">#&gt; 2 treatment/flag combination(s) with count = 1 were masked and added to the most common combination.</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): REGION1, REGION1N</span></span>
@@ -257,7 +257,7 @@ datasets:</p>
 <span><span class="co">#&gt; Simulating column(s): BMIBL</span></span>
 <span><span class="co">#&gt; Simulating column(s): TRTSDT</span></span>
 <span><span class="co">#&gt; ----- Glimpsing adae (occds) dataset -----</span></span>
-<span><span class="co">#&gt; Loading dataset from /tmp/RtmpRlLoMo/adam_data/adae.sas7bdat</span></span>
+<span><span class="co">#&gt; Loading dataset from /tmp/RtmpuS86XG/adam_data/adae.sas7bdat</span></span>
 <span><span class="co">#&gt; Glimpsing occurrence counts, ID and sequence columns</span></span>
 <span><span class="co">#&gt; Glimpsing ADSL columns from synthetic ADSL</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): AESEV, AESEVN</span></span>
@@ -268,7 +268,7 @@ datasets:</p>
 <span><span class="co">#&gt; Glimpsing column(s): ASTDT</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): AENDT</span></span>
 <span><span class="co">#&gt; ----- Glimpsing adlb (bds) dataset -----</span></span>
-<span><span class="co">#&gt; Loading dataset from /tmp/RtmpRlLoMo/adam_data/adlb.sas7bdat</span></span>
+<span><span class="co">#&gt; Loading dataset from /tmp/RtmpuS86XG/adam_data/adlb.sas7bdat</span></span>
 <span><span class="co">#&gt; Glimpsing PARAM/VISIT columns</span></span>
 <span><span class="co">#&gt; Glimpsing ADSL columns from synthetic ADSL</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): TRTA, TRTAN</span></span>
@@ -277,7 +277,7 @@ datasets:</p>
 <span><span class="co">#&gt; Glimpsing column(s): CHG</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): ANL01FL</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): ADT</span></span>
-<span><span class="co">#&gt; Saving study summary to /tmp/RtmpRlLoMo/file49c5516c0ca1.rds...</span></span>
+<span><span class="co">#&gt; Saving study summary to /tmp/RtmpuS86XG/file47a35f60e9e1.rds...</span></span>
 <span><span class="co">#&gt; ----- Simulating adsl -----</span></span>
 <span><span class="co">#&gt; Simulating column(s): treatment, flag</span></span>
 <span><span class="co">#&gt; Simulating column(s): REGION1, REGION1N</span></span>
@@ -295,7 +295,7 @@ datasets:</p>
 <span><span class="co">#&gt; Simulating column(s): WEIGHTBL</span></span>
 <span><span class="co">#&gt; Simulating column(s): BMIBL</span></span>
 <span><span class="co">#&gt; Simulating column(s): TRTSDT</span></span>
-<span><span class="co">#&gt; Saving adsl to /tmp/RtmpRlLoMo/syn_output/syn_adsl.rds...</span></span>
+<span><span class="co">#&gt; Saving adsl to /tmp/RtmpuS86XG/syn_output/syn_adsl.rds...</span></span>
 <span><span class="co">#&gt; ----- Simulating adae -----</span></span>
 <span><span class="co">#&gt; Simulating occurrence counts</span></span>
 <span><span class="co">#&gt; Simulating sequence column</span></span>
@@ -306,7 +306,7 @@ datasets:</p>
 <span><span class="co">#&gt; Simulating column(s): AEREL</span></span>
 <span><span class="co">#&gt; Simulating column(s): ASTDT</span></span>
 <span><span class="co">#&gt; Simulating column(s): AENDT</span></span>
-<span><span class="co">#&gt; Saving adae to /tmp/RtmpRlLoMo/syn_output/syn_adae.rds...</span></span>
+<span><span class="co">#&gt; Saving adae to /tmp/RtmpuS86XG/syn_output/syn_adae.rds...</span></span>
 <span><span class="co">#&gt; ----- Simulating adlb -----</span></span>
 <span><span class="co">#&gt; Simulating PARAM/VISIT and ADSL columns</span></span>
 <span><span class="co">#&gt; Simulating column(s): param, visits</span></span>
@@ -315,7 +315,7 @@ datasets:</p>
 <span><span class="co">#&gt; Simulating column(s): AVAL</span></span>
 <span><span class="co">#&gt; Simulating column(s): BASE</span></span>
 <span><span class="co">#&gt; Simulating column(s): CHG</span></span>
-<span><span class="co">#&gt; Saving adlb to /tmp/RtmpRlLoMo/syn_output/syn_adlb.rds...</span></span></code></pre></div>
+<span><span class="co">#&gt; Saving adlb to /tmp/RtmpuS86XG/syn_output/syn_adlb.rds...</span></span></code></pre></div>
 <p>Synthetic datasets are saved as individual <code>.rds</code> files in
 the output directory:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -339,7 +339,7 @@ the output directory:</p>
 <span></span>
 <span><span class="co"># Each dataset carries a version attribute for traceability</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">syn_adsl</span>, <span class="st">"synadam_version"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "0.3.0"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "0.3.1"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -481,7 +481,7 @@ use <code><a href="../reference/glimpse_study.html">glimpse_study()</a></code> a
 <span>  study_summary_path <span class="op">=</span> <span class="va">study_summary_path</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ----- Glimpsing adsl (adsl) dataset -----</span></span>
-<span><span class="co">#&gt; Loading dataset from /tmp/RtmpRlLoMo/adam_data/adsl.sas7bdat</span></span>
+<span><span class="co">#&gt; Loading dataset from /tmp/RtmpuS86XG/adam_data/adsl.sas7bdat</span></span>
 <span><span class="co">#&gt; Glimpsing treatment/flag columns</span></span>
 <span><span class="co">#&gt; 2 treatment/flag combination(s) with count = 1 were masked and added to the most common combination.</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): REGION1, REGION1N</span></span>
@@ -516,7 +516,7 @@ use <code><a href="../reference/glimpse_study.html">glimpse_study()</a></code> a
 <span><span class="co">#&gt; Simulating column(s): BMIBL</span></span>
 <span><span class="co">#&gt; Simulating column(s): TRTSDT</span></span>
 <span><span class="co">#&gt; ----- Glimpsing adae (occds) dataset -----</span></span>
-<span><span class="co">#&gt; Loading dataset from /tmp/RtmpRlLoMo/adam_data/adae.sas7bdat</span></span>
+<span><span class="co">#&gt; Loading dataset from /tmp/RtmpuS86XG/adam_data/adae.sas7bdat</span></span>
 <span><span class="co">#&gt; Glimpsing occurrence counts, ID and sequence columns</span></span>
 <span><span class="co">#&gt; Glimpsing ADSL columns from synthetic ADSL</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): AESEV, AESEVN</span></span>
@@ -527,7 +527,7 @@ use <code><a href="../reference/glimpse_study.html">glimpse_study()</a></code> a
 <span><span class="co">#&gt; Glimpsing column(s): ASTDT</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): AENDT</span></span>
 <span><span class="co">#&gt; ----- Glimpsing adlb (bds) dataset -----</span></span>
-<span><span class="co">#&gt; Loading dataset from /tmp/RtmpRlLoMo/adam_data/adlb.sas7bdat</span></span>
+<span><span class="co">#&gt; Loading dataset from /tmp/RtmpuS86XG/adam_data/adlb.sas7bdat</span></span>
 <span><span class="co">#&gt; Glimpsing PARAM/VISIT columns</span></span>
 <span><span class="co">#&gt; Glimpsing ADSL columns from synthetic ADSL</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): TRTA, TRTAN</span></span>
@@ -536,7 +536,7 @@ use <code><a href="../reference/glimpse_study.html">glimpse_study()</a></code> a
 <span><span class="co">#&gt; Glimpsing column(s): CHG</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): ANL01FL</span></span>
 <span><span class="co">#&gt; Glimpsing column(s): ADT</span></span>
-<span><span class="co">#&gt; Saving study summary to /tmp/RtmpRlLoMo/syn_output/study_summary.rds...</span></span>
+<span><span class="co">#&gt; Saving study summary to /tmp/RtmpuS86XG/syn_output/study_summary.rds...</span></span>
 <span></span>
 <span><span class="co"># The study summary is one .rds with all summaries plus seed and version.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">study_summary_path</span><span class="op">)</span>, max.level <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
@@ -553,8 +553,8 @@ use <code><a href="../reference/glimpse_study.html">glimpse_study()</a></code> a
 <span><span class="co">#&gt;   .. ..- attr(*, "col_order")= chr [1:13] "STUDYID" "USUBJID" "PARAM" "PARAMCD" ...</span></span>
 <span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:2] "summary_bds" "summary"</span></span>
 <span><span class="co">#&gt;  $ seed           : int 42</span></span>
-<span><span class="co">#&gt;  $ synadam_version: chr "0.3.0"</span></span>
-<span><span class="co">#&gt;  $ glimpsed_at    : POSIXct[1:1], format: "2026-06-30 10:37:17"</span></span>
+<span><span class="co">#&gt;  $ synadam_version: chr "0.3.1"</span></span>
+<span><span class="co">#&gt;  $ glimpsed_at    : POSIXct[1:1], format: "2026-07-02 09:11:22"</span></span>
 <span></span>
 <span><span class="co"># Phase 2: simulate from the study summary. Does not need the SAS files.</span></span>
 <span><span class="va">split_output_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"syn_output_split"</span><span class="op">)</span></span>
@@ -579,7 +579,7 @@ use <code><a href="../reference/glimpse_study.html">glimpse_study()</a></code> a
 <span><span class="co">#&gt; Simulating column(s): WEIGHTBL</span></span>
 <span><span class="co">#&gt; Simulating column(s): BMIBL</span></span>
 <span><span class="co">#&gt; Simulating column(s): TRTSDT</span></span>
-<span><span class="co">#&gt; Saving adsl to /tmp/RtmpRlLoMo/syn_output_split/syn_adsl.rds...</span></span>
+<span><span class="co">#&gt; Saving adsl to /tmp/RtmpuS86XG/syn_output_split/syn_adsl.rds...</span></span>
 <span><span class="co">#&gt; ----- Simulating adae -----</span></span>
 <span><span class="co">#&gt; Simulating occurrence counts</span></span>
 <span><span class="co">#&gt; Simulating sequence column</span></span>
@@ -590,7 +590,7 @@ use <code><a href="../reference/glimpse_study.html">glimpse_study()</a></code> a
 <span><span class="co">#&gt; Simulating column(s): AEREL</span></span>
 <span><span class="co">#&gt; Simulating column(s): ASTDT</span></span>
 <span><span class="co">#&gt; Simulating column(s): AENDT</span></span>
-<span><span class="co">#&gt; Saving adae to /tmp/RtmpRlLoMo/syn_output_split/syn_adae.rds...</span></span>
+<span><span class="co">#&gt; Saving adae to /tmp/RtmpuS86XG/syn_output_split/syn_adae.rds...</span></span>
 <span><span class="co">#&gt; ----- Simulating adlb -----</span></span>
 <span><span class="co">#&gt; Simulating PARAM/VISIT and ADSL columns</span></span>
 <span><span class="co">#&gt; Simulating column(s): param, visits</span></span>
@@ -599,7 +599,7 @@ use <code><a href="../reference/glimpse_study.html">glimpse_study()</a></code> a
 <span><span class="co">#&gt; Simulating column(s): AVAL</span></span>
 <span><span class="co">#&gt; Simulating column(s): BASE</span></span>
 <span><span class="co">#&gt; Simulating column(s): CHG</span></span>
-<span><span class="co">#&gt; Saving adlb to /tmp/RtmpRlLoMo/syn_output_split/syn_adlb.rds...</span></span>
+<span><span class="co">#&gt; Saving adlb to /tmp/RtmpuS86XG/syn_output_split/syn_adlb.rds...</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">split_output_dir</span>, pattern <span class="op">=</span> <span class="st">"\\.rds$"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "syn_adae.rds" "syn_adlb.rds" "syn_adsl.rds"</span></span></code></pre></div>

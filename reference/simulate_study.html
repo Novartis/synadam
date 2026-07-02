@@ -11,7 +11,7 @@ each and save them as individual .rds files in a specified directory."></head><b
 
     <a class="navbar-brand me-2" href="../index.html">synadam</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@ each and save them as individual .rds files in a specified directory."></head><b
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Simulate synthetic ADaM datasets for a study.</h1>
-      <small class="dont-index">Source: <a href="https://github.com/Novartis/synadam/blob/ci-pkgdown-test/R/simulate_study.R" class="external-link"><code>R/simulate_study.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Novartis/synadam/blob/main/R/simulate_study.R" class="external-link"><code>R/simulate_study.R</code></a></small>
       <div class="d-none name"><code>simulate_study.Rd</code></div>
     </div>
 
@@ -120,7 +120,7 @@ created automatically if it doesn't exist.</p>
 <span class="r-in"><span><span class="co"># Simulate the whole study; synthetic syn_*.rds files land in out_dir.</span></span></span>
 <span class="r-in"><span><span class="fu">simulate_study</span><span class="op">(</span><span class="va">yaml_path</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ----- Glimpsing adsl (adsl) dataset -----</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading dataset from /tmp/RtmpS9mnbx/adam_dir/adsl.sas7bdat</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading dataset from /tmp/RtmpzuRk4P/adam_dir/adsl.sas7bdat</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Glimpsing treatment/flag columns</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 2 treatment/flag combination(s) with count = 1 were masked and added to the most common combination.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Glimpsing column(s): REGION1, REGION1N</span>
@@ -155,7 +155,7 @@ created automatically if it doesn't exist.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating column(s): BMIBL</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating column(s): TRTSDT</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ----- Glimpsing adae (occds) dataset -----</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading dataset from /tmp/RtmpS9mnbx/adam_dir/adae.sas7bdat</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading dataset from /tmp/RtmpzuRk4P/adam_dir/adae.sas7bdat</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Glimpsing occurrence counts, ID and sequence columns</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Glimpsing ADSL columns from synthetic ADSL</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Glimpsing column(s): AESEV, AESEVN</span>
@@ -165,7 +165,7 @@ created automatically if it doesn't exist.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Glimpsing column(s): AEREL</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Glimpsing column(s): ASTDT</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Glimpsing column(s): AENDT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving study summary to /tmp/RtmpS9mnbx/file468365dd7fb1.rds...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving study summary to /tmp/RtmpzuRk4P/file446024ea14a2.rds...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ----- Simulating adsl -----</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating column(s): treatment, flag</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating column(s): REGION1, REGION1N</span>
@@ -183,7 +183,7 @@ created automatically if it doesn't exist.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating column(s): WEIGHTBL</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating column(s): BMIBL</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating column(s): TRTSDT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving adsl to /tmp/RtmpS9mnbx/syn_study/syn_adsl.rds...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving adsl to /tmp/RtmpzuRk4P/syn_study/syn_adsl.rds...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ----- Simulating adae -----</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating occurrence counts</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating sequence column</span>
@@ -194,7 +194,7 @@ created automatically if it doesn't exist.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating column(s): AEREL</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating column(s): ASTDT</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating column(s): AENDT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving adae to /tmp/RtmpS9mnbx/syn_study/syn_adae.rds...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving adae to /tmp/RtmpzuRk4P/syn_study/syn_adae.rds...</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">out_dir</span>, pattern <span class="op">=</span> <span class="st">"\\.rds$"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "syn_adae.rds" "syn_adsl.rds"</span>
 <span class="r-in"><span></span></span>

@@ -84,13 +84,13 @@ cat(readLines(yaml_path), sep = "\n")
 #> # Fields marked REVIEW were inferred with low confidence -
 #> # verify them before running simulate_study().
 #> 
-#> output_dir: "/tmp/RtmpRlLoMo/syn_output"
+#> output_dir: "/tmp/RtmpuS86XG/syn_output"
 #> seed: 42
 #> 
 #> datasets:
 #>   adae:
 #>     dataset_type: "occds"
-#>     path: "/tmp/RtmpRlLoMo/adam_data/adae.sas7bdat"
+#>     path: "/tmp/RtmpuS86XG/adam_data/adae.sas7bdat"
 #>     id_cols: [USUBJID]
 #>     seq_col: AESEQ
 #>     flag_cols: []
@@ -99,7 +99,7 @@ cat(readLines(yaml_path), sep = "\n")
 #> 
 #>   adlb:
 #>     dataset_type: "bds"
-#>     path: "/tmp/RtmpRlLoMo/adam_data/adlb.sas7bdat"
+#>     path: "/tmp/RtmpuS86XG/adam_data/adlb.sas7bdat"
 #>     id_cols: [USUBJID]
 #>     param_cols: [PARAM, PARAMCD]
 #>     visit_cols: [AVISIT, AVISITN]  # REVIEW: visit_cols are optional
@@ -109,7 +109,7 @@ cat(readLines(yaml_path), sep = "\n")
 #> 
 #>   adsl:
 #>     dataset_type: "adsl"
-#>     path: "/tmp/RtmpRlLoMo/adam_data/adsl.sas7bdat"
+#>     path: "/tmp/RtmpuS86XG/adam_data/adsl.sas7bdat"
 #>     id_cols: [USUBJID, SUBJID]
 #>     treatment_cols: [TRT01A, TRT01AN]
 #>     flag_cols: [SAFFL, ITTFL, EFFFL]  # REVIEW: matched *FL pattern
@@ -136,7 +136,7 @@ Once satisfied with the configuration, generate all synthetic datasets:
 
 synadam::simulate_study(config_path = yaml_path)
 #> ----- Glimpsing adsl (adsl) dataset -----
-#> Loading dataset from /tmp/RtmpRlLoMo/adam_data/adsl.sas7bdat
+#> Loading dataset from /tmp/RtmpuS86XG/adam_data/adsl.sas7bdat
 #> Glimpsing treatment/flag columns
 #> 2 treatment/flag combination(s) with count = 1 were masked and added to the most common combination.
 #> Glimpsing column(s): REGION1, REGION1N
@@ -171,7 +171,7 @@ synadam::simulate_study(config_path = yaml_path)
 #> Simulating column(s): BMIBL
 #> Simulating column(s): TRTSDT
 #> ----- Glimpsing adae (occds) dataset -----
-#> Loading dataset from /tmp/RtmpRlLoMo/adam_data/adae.sas7bdat
+#> Loading dataset from /tmp/RtmpuS86XG/adam_data/adae.sas7bdat
 #> Glimpsing occurrence counts, ID and sequence columns
 #> Glimpsing ADSL columns from synthetic ADSL
 #> Glimpsing column(s): AESEV, AESEVN
@@ -182,7 +182,7 @@ synadam::simulate_study(config_path = yaml_path)
 #> Glimpsing column(s): ASTDT
 #> Glimpsing column(s): AENDT
 #> ----- Glimpsing adlb (bds) dataset -----
-#> Loading dataset from /tmp/RtmpRlLoMo/adam_data/adlb.sas7bdat
+#> Loading dataset from /tmp/RtmpuS86XG/adam_data/adlb.sas7bdat
 #> Glimpsing PARAM/VISIT columns
 #> Glimpsing ADSL columns from synthetic ADSL
 #> Glimpsing column(s): TRTA, TRTAN
@@ -191,7 +191,7 @@ synadam::simulate_study(config_path = yaml_path)
 #> Glimpsing column(s): CHG
 #> Glimpsing column(s): ANL01FL
 #> Glimpsing column(s): ADT
-#> Saving study summary to /tmp/RtmpRlLoMo/file49c5516c0ca1.rds...
+#> Saving study summary to /tmp/RtmpuS86XG/file47a35f60e9e1.rds...
 #> ----- Simulating adsl -----
 #> Simulating column(s): treatment, flag
 #> Simulating column(s): REGION1, REGION1N
@@ -209,7 +209,7 @@ synadam::simulate_study(config_path = yaml_path)
 #> Simulating column(s): WEIGHTBL
 #> Simulating column(s): BMIBL
 #> Simulating column(s): TRTSDT
-#> Saving adsl to /tmp/RtmpRlLoMo/syn_output/syn_adsl.rds...
+#> Saving adsl to /tmp/RtmpuS86XG/syn_output/syn_adsl.rds...
 #> ----- Simulating adae -----
 #> Simulating occurrence counts
 #> Simulating sequence column
@@ -220,7 +220,7 @@ synadam::simulate_study(config_path = yaml_path)
 #> Simulating column(s): AEREL
 #> Simulating column(s): ASTDT
 #> Simulating column(s): AENDT
-#> Saving adae to /tmp/RtmpRlLoMo/syn_output/syn_adae.rds...
+#> Saving adae to /tmp/RtmpuS86XG/syn_output/syn_adae.rds...
 #> ----- Simulating adlb -----
 #> Simulating PARAM/VISIT and ADSL columns
 #> Simulating column(s): param, visits
@@ -229,7 +229,7 @@ synadam::simulate_study(config_path = yaml_path)
 #> Simulating column(s): AVAL
 #> Simulating column(s): BASE
 #> Simulating column(s): CHG
-#> Saving adlb to /tmp/RtmpRlLoMo/syn_output/syn_adlb.rds...
+#> Saving adlb to /tmp/RtmpuS86XG/syn_output/syn_adlb.rds...
 ```
 
 Synthetic datasets are saved as individual `.rds` files in the output
@@ -257,7 +257,7 @@ head(syn_adsl)
 
 # Each dataset carries a version attribute for traceability
 attr(syn_adsl, "synadam_version")
-#> [1] "0.3.0"
+#> [1] "0.3.1"
 ```
 
 ## Writing the YAML configuration manually
@@ -413,7 +413,7 @@ synadam::glimpse_study(
   study_summary_path = study_summary_path
 )
 #> ----- Glimpsing adsl (adsl) dataset -----
-#> Loading dataset from /tmp/RtmpRlLoMo/adam_data/adsl.sas7bdat
+#> Loading dataset from /tmp/RtmpuS86XG/adam_data/adsl.sas7bdat
 #> Glimpsing treatment/flag columns
 #> 2 treatment/flag combination(s) with count = 1 were masked and added to the most common combination.
 #> Glimpsing column(s): REGION1, REGION1N
@@ -448,7 +448,7 @@ synadam::glimpse_study(
 #> Simulating column(s): BMIBL
 #> Simulating column(s): TRTSDT
 #> ----- Glimpsing adae (occds) dataset -----
-#> Loading dataset from /tmp/RtmpRlLoMo/adam_data/adae.sas7bdat
+#> Loading dataset from /tmp/RtmpuS86XG/adam_data/adae.sas7bdat
 #> Glimpsing occurrence counts, ID and sequence columns
 #> Glimpsing ADSL columns from synthetic ADSL
 #> Glimpsing column(s): AESEV, AESEVN
@@ -459,7 +459,7 @@ synadam::glimpse_study(
 #> Glimpsing column(s): ASTDT
 #> Glimpsing column(s): AENDT
 #> ----- Glimpsing adlb (bds) dataset -----
-#> Loading dataset from /tmp/RtmpRlLoMo/adam_data/adlb.sas7bdat
+#> Loading dataset from /tmp/RtmpuS86XG/adam_data/adlb.sas7bdat
 #> Glimpsing PARAM/VISIT columns
 #> Glimpsing ADSL columns from synthetic ADSL
 #> Glimpsing column(s): TRTA, TRTAN
@@ -468,7 +468,7 @@ synadam::glimpse_study(
 #> Glimpsing column(s): CHG
 #> Glimpsing column(s): ANL01FL
 #> Glimpsing column(s): ADT
-#> Saving study summary to /tmp/RtmpRlLoMo/syn_output/study_summary.rds...
+#> Saving study summary to /tmp/RtmpuS86XG/syn_output/study_summary.rds...
 
 # The study summary is one .rds with all summaries plus seed and version.
 str(readRDS(study_summary_path), max.level = 2)
@@ -485,8 +485,8 @@ str(readRDS(study_summary_path), max.level = 2)
 #>   .. ..- attr(*, "col_order")= chr [1:13] "STUDYID" "USUBJID" "PARAM" "PARAMCD" ...
 #>   .. ..- attr(*, "class")= chr [1:2] "summary_bds" "summary"
 #>  $ seed           : int 42
-#>  $ synadam_version: chr "0.3.0"
-#>  $ glimpsed_at    : POSIXct[1:1], format: "2026-06-30 10:37:17"
+#>  $ synadam_version: chr "0.3.1"
+#>  $ glimpsed_at    : POSIXct[1:1], format: "2026-07-02 09:11:22"
 
 # Phase 2: simulate from the study summary. Does not need the SAS files.
 split_output_dir <- file.path(tempdir(), "syn_output_split")
@@ -511,7 +511,7 @@ synadam::simulate_study_from_summary(
 #> Simulating column(s): WEIGHTBL
 #> Simulating column(s): BMIBL
 #> Simulating column(s): TRTSDT
-#> Saving adsl to /tmp/RtmpRlLoMo/syn_output_split/syn_adsl.rds...
+#> Saving adsl to /tmp/RtmpuS86XG/syn_output_split/syn_adsl.rds...
 #> ----- Simulating adae -----
 #> Simulating occurrence counts
 #> Simulating sequence column
@@ -522,7 +522,7 @@ synadam::simulate_study_from_summary(
 #> Simulating column(s): AEREL
 #> Simulating column(s): ASTDT
 #> Simulating column(s): AENDT
-#> Saving adae to /tmp/RtmpRlLoMo/syn_output_split/syn_adae.rds...
+#> Saving adae to /tmp/RtmpuS86XG/syn_output_split/syn_adae.rds...
 #> ----- Simulating adlb -----
 #> Simulating PARAM/VISIT and ADSL columns
 #> Simulating column(s): param, visits
@@ -531,7 +531,7 @@ synadam::simulate_study_from_summary(
 #> Simulating column(s): AVAL
 #> Simulating column(s): BASE
 #> Simulating column(s): CHG
-#> Saving adlb to /tmp/RtmpRlLoMo/syn_output_split/syn_adlb.rds...
+#> Saving adlb to /tmp/RtmpuS86XG/syn_output_split/syn_adlb.rds...
 
 list.files(split_output_dir, pattern = "\\.rds$")
 #> [1] "syn_adae.rds" "syn_adlb.rds" "syn_adsl.rds"

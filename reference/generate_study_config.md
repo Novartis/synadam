@@ -151,5 +151,5 @@ yaml_path <- generate_study_config(
   output_dir = file.path(tempdir(), "syn_out")
 )
 yaml_path
-#> [1] "/tmp/RtmpS9mnbx/syn_out/synadam_config.yaml"
+#> [1] "/tmp/RtmpzuRk4P/syn_out/synadam_config.yaml"
 ```

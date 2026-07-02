@@ -1,5 +1,17 @@
 # Changelog
 
+## synadam 0.3.1
+
+### Infrastructure
+
+- Add a pkgdown GitHub Actions workflow
+  (`.github/workflows/pkgdown.yaml`) that builds the documentation site
+  and deploys it to the `gh-pages` branch, and set the site `url` in
+  `_pkgdown.yml`.
+- Add an R-hub v2 GitHub Actions workflow
+  (`.github/workflows/rhub.yaml`) for multi-platform CRAN checks,
+  dispatched via `rhub::rhub_check()`.
+
 ## synadam 0.3.0
 
 ### Summary
