@@ -1,6 +1,6 @@
 Package: synadam
 Title: Generate Synthetic ADaM Datasets
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: c(
     person("David", "Zhang", , "david-1.zhang@novartis.com", role = c("aut", "cre")),
     person("Thibaud", "Coroller", , "thibaud.coroller@novartis.com", role = "ctb"),

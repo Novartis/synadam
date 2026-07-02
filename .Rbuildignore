@@ -15,4 +15,5 @@
 ^\.lintr$
 ^_pkgdown\.yml$
 ^\.DS_Store$
-^cran-comments\.md$
+^\.github$
+^release_github\.sh$
