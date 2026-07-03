@@ -265,3 +265,20 @@ test_that("ad-prefixed file that fails column inspection still emits REVIEW", {
   cfg <- yaml::read_yaml(yaml_path)
   expect_equal(cfg$datasets$adfoo$dataset_type, "REVIEW")
 })
+
+test_that(".yaml_quote produces scalars that round-trip through the parser", {
+  # Windows-style backslash paths must survive verbatim. Double-quoted YAML
+  # would treat backslash sequences (e.g. '\\U', '\\A') as escapes and fail to
+  # parse. Single-quoted scalars do not process backslashes.
+  winpath <- "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\Rtmp/syn_output"
+  quoted <- synadam:::.yaml_quote(winpath)
+  parsed <- yaml::yaml.load(paste0("output_dir: ", quoted))
+  expect_equal(parsed$output_dir, winpath)
+
+  # Embedded single quotes are escaped by doubling.
+  tricky <- "it's/a/path"
+  expect_equal(
+    yaml::yaml.load(paste0("x: ", synadam:::.yaml_quote(tricky)))$x,
+    tricky
+  )
+})

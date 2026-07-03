@@ -646,14 +646,18 @@ generate_study_config <- function(adam_dir,
   return(paste(lines, collapse = "\n"))
 }
 
-#' Wrap a string in double quotes, escaping any embedded double quotes.
+#' Wrap a string in single quotes, escaping any embedded single quotes.
+#'
+#' Single-quoted YAML scalars do not process backslash escapes, so Windows
+#' paths (e.g. `C:\\Users\\...`) survive verbatim. Double quotes would treat
+#' backslash sequences like `\\U` as escape sequences and fail to parse.
 #'
 #' @param s `character(1)` - string to quote.
 #'
 #' @return `character(1)` - the YAML-quoted string.
 #' @keywords internal
 .yaml_quote <- function(s) {
-  return(paste0("\"", gsub("\"", "\\\\\"", s), "\""))
+  return(paste0("'", gsub("'", "''", s, fixed = TRUE), "'"))
 }
 
 #' Emit YAML lines for one dataset block.
