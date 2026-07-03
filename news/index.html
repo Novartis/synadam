@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">synadam</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,6 +33,13 @@
       <small>Source: <a href="https://github.com/Novartis/synadam/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.2" id="synadam-032">synadam 0.3.2<a class="anchor" aria-label="anchor" href="#synadam-032"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-0-3-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-2"></a></h3>
+<ul><li>Fix <code><a href="../reference/generate_study_config.html">generate_study_config()</a></code> writing unparseable YAML on Windows. Paths were emitted as double-quoted scalars, so backslash sequences in Windows paths (e.g. <code>C:\Users\...</code>) were interpreted as YAML escapes and <code><a href="../reference/simulate_study.html">simulate_study()</a></code> failed to read the config. Paths are now single-quoted, which passes backslashes through verbatim.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.1" id="synadam-031">synadam 0.3.1<a class="anchor" aria-label="anchor" href="#synadam-031"></a></h2>
 <div class="section level3">

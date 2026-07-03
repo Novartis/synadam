@@ -1,5 +1,18 @@
 # Changelog
 
+## synadam 0.3.2
+
+### Bug fixes
+
+- Fix
+  [`generate_study_config()`](https://novartis.github.io/synadam/reference/generate_study_config.md)
+  writing unparseable YAML on Windows. Paths were emitted as
+  double-quoted scalars, so backslash sequences in Windows paths
+  (e.g. `C:\Users\...`) were interpreted as YAML escapes and
+  [`simulate_study()`](https://novartis.github.io/synadam/reference/simulate_study.md)
+  failed to read the config. Paths are now single-quoted, which passes
+  backslashes through verbatim.
+
 ## synadam 0.3.1
 
 ### Infrastructure
