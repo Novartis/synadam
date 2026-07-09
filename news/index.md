@@ -1,12 +1,26 @@
 # Changelog
 
+## synadam 0.3.3
+
+### Infrastructure
+
+- Add pre-commit hooks for repository hygiene: `check-added-large-files`
+  (2 MB cap, `--enforce-all`) and `detect-private-key` from
+  `pre-commit/pre-commit-hooks` (v6.0.0), and `codespell` (v2.4.2) for
+  spell-checking. `codespell` runs with `--write-changes` and an
+  `--ignore-words-list` for domain terms (`acn`, `ths`); `renv.lock` and
+  `release_github.sh` are excluded to avoid false positives on generated
+  content and shell identifiers.
+- Fix two spelling typos surfaced by `codespell`, in `NEWS.md` and a
+  comment in `R/glimpse_utils.R`.
+
 ## synadam 0.3.2
 
 ### Bug fixes
 
 - Fix
   [`generate_study_config()`](https://novartis.github.io/synadam/reference/generate_study_config.md)
-  writing unparseable YAML on Windows. Paths were emitted as
+  writing unparsable YAML on Windows. Paths were emitted as
   double-quoted scalars, so backslash sequences in Windows paths
   (e.g. `C:\Users\...`) were interpreted as YAML escapes and
   [`simulate_study()`](https://novartis.github.io/synadam/reference/simulate_study.md)

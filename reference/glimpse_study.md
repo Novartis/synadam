@@ -56,7 +56,7 @@ yaml_path <- generate_study_config(
 summary_path <- tempfile(fileext = ".rds")
 glimpse_study(yaml_path, summary_path)
 #> ----- Glimpsing adsl (adsl) dataset -----
-#> Loading dataset from /tmp/RtmpWe8Tpg/adam_dir/adsl.sas7bdat
+#> Loading dataset from /tmp/Rtmp7ApFxu/adam_dir/adsl.sas7bdat
 #> Glimpsing treatment/flag columns
 #> 2 treatment/flag combination(s) with count = 1 were masked and added to the most common combination.
 #> Glimpsing column(s): REGION1, REGION1N
@@ -91,7 +91,7 @@ glimpse_study(yaml_path, summary_path)
 #> Simulating column(s): BMIBL
 #> Simulating column(s): TRTSDT
 #> ----- Glimpsing adae (occds) dataset -----
-#> Loading dataset from /tmp/RtmpWe8Tpg/adam_dir/adae.sas7bdat
+#> Loading dataset from /tmp/Rtmp7ApFxu/adam_dir/adae.sas7bdat
 #> Glimpsing occurrence counts, ID and sequence columns
 #> Glimpsing ADSL columns from synthetic ADSL
 #> Glimpsing column(s): AESEV, AESEVN
@@ -101,7 +101,7 @@ glimpse_study(yaml_path, summary_path)
 #> Glimpsing column(s): AEREL
 #> Glimpsing column(s): ASTDT
 #> Glimpsing column(s): AENDT
-#> Saving study summary to /tmp/RtmpWe8Tpg/file44192872767c.rds...
+#> Saving study summary to /tmp/Rtmp7ApFxu/file43c67f2eb46f.rds...
 
 # Simulate phase: generate synthetic datasets from the study summary.
 out_dir <- file.path(tempdir(), "syn_glimpse_out")
@@ -123,7 +123,7 @@ simulate_study_from_summary(summary_path, out_dir)
 #> Simulating column(s): WEIGHTBL
 #> Simulating column(s): BMIBL
 #> Simulating column(s): TRTSDT
-#> Saving adsl to /tmp/RtmpWe8Tpg/syn_glimpse_out/syn_adsl.rds...
+#> Saving adsl to /tmp/Rtmp7ApFxu/syn_glimpse_out/syn_adsl.rds...
 #> ----- Simulating adae -----
 #> Simulating occurrence counts
 #> Simulating sequence column
@@ -134,7 +134,7 @@ simulate_study_from_summary(summary_path, out_dir)
 #> Simulating column(s): AEREL
 #> Simulating column(s): ASTDT
 #> Simulating column(s): AENDT
-#> Saving adae to /tmp/RtmpWe8Tpg/syn_glimpse_out/syn_adae.rds...
+#> Saving adae to /tmp/Rtmp7ApFxu/syn_glimpse_out/syn_adae.rds...
 list.files(out_dir, pattern = "\\.rds$")
 #> [1] "syn_adae.rds" "syn_adsl.rds"
 ```

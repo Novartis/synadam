@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">synadam</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,10 +34,18 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.3" id="synadam-033">synadam 0.3.3<a class="anchor" aria-label="anchor" href="#synadam-033"></a></h2>
+<div class="section level3">
+<h3 id="infrastructure-0-3-3">Infrastructure<a class="anchor" aria-label="anchor" href="#infrastructure-0-3-3"></a></h3>
+<ul><li>Add pre-commit hooks for repository hygiene: <code>check-added-large-files</code> (2 MB cap, <code>--enforce-all</code>) and <code>detect-private-key</code> from <code>pre-commit/pre-commit-hooks</code> (v6.0.0), and <code>codespell</code> (v2.4.2) for spell-checking. <code>codespell</code> runs with <code>--write-changes</code> and an <code>--ignore-words-list</code> for domain terms (<code>acn</code>, <code>ths</code>); <code>renv.lock</code> and <code>release_github.sh</code> are excluded to avoid false positives on generated content and shell identifiers.</li>
+<li>Fix two spelling typos surfaced by <code>codespell</code>, in <code>NEWS.md</code> and a comment in <code>R/glimpse_utils.R</code>.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.2" id="synadam-032">synadam 0.3.2<a class="anchor" aria-label="anchor" href="#synadam-032"></a></h2>
 <div class="section level3">
 <h3 id="bug-fixes-0-3-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-2"></a></h3>
-<ul><li>Fix <code><a href="../reference/generate_study_config.html">generate_study_config()</a></code> writing unparseable YAML on Windows. Paths were emitted as double-quoted scalars, so backslash sequences in Windows paths (e.g. <code>C:\Users\...</code>) were interpreted as YAML escapes and <code><a href="../reference/simulate_study.html">simulate_study()</a></code> failed to read the config. Paths are now single-quoted, which passes backslashes through verbatim.</li>
+<ul><li>Fix <code><a href="../reference/generate_study_config.html">generate_study_config()</a></code> writing unparsable YAML on Windows. Paths were emitted as double-quoted scalars, so backslash sequences in Windows paths (e.g. <code>C:\Users\...</code>) were interpreted as YAML escapes and <code><a href="../reference/simulate_study.html">simulate_study()</a></code> failed to read the config. Paths are now single-quoted, which passes backslashes through verbatim.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -82,7 +90,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>
