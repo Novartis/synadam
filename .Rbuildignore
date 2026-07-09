@@ -17,3 +17,5 @@
 ^\.DS_Store$
 ^\.github$
 ^release_github\.sh$
+^cran-comments\.md$
+^synadam.*\.tar\.gz$

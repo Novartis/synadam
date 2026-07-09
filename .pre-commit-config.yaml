@@ -16,3 +16,17 @@ repos:
         exclude: *exclude_pattern
       - id: deps-in-desc
         exclude: *exclude_pattern
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=2000", "--enforce-all"]
+      - id: detect-private-key
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.2
+    hooks:
+      - id: codespell
+        args: ["--write-changes", "--ignore-words-list=acn,ths"]
+        exclude: ^(renv\.lock|release_github\.sh)$

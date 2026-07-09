@@ -10,7 +10,7 @@
   # Only retain non-missing, unique values
   x_table <- table(x, useNA = "no")
 
-  # Remove values with only 1 occurence
+  # Remove values with only 1 occurrence
   x_unique <- names(x_table[x_table != 1])
 
   # If there are no unique values remaining, use "MASKED" as only unique value
