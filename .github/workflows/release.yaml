@@ -1,0 +1,49 @@
+# Create a GitHub release on every push to main.
+# Mirrored from the internal GitLab repo; runs only on the public GitHub mirror.
+on:
+  push:
+    branches: [main]
+
+name: release.yaml
+
+permissions: read-all
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    # Never run on branches other than main (guarded above) or on forks.
+    if: github.repository == 'Novartis/synadam'
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Read package version
+        id: version
+        run: |
+          version=$(awk -F': *' '/^Version:/ {print $2; exit}' DESCRIPTION)
+          if [ -z "$version" ]; then
+            echo "ERROR: could not read Version from DESCRIPTION" >&2
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Package version is $version"
+
+      - name: Create release
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          # Fail the pipeline if a release for this version already exists; the
+          # version in DESCRIPTION must be bumped before merging to main.
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            echo "ERROR: release $VERSION already exists; bump Version in DESCRIPTION." >&2
+            exit 1
+          fi
+          # Tag is created at the merge commit (GITHUB_SHA) by gh release create.
+          gh release create "$VERSION" \
+            --target "$GITHUB_SHA" \
+            --title "synadam $VERSION" \
+            --notes "Automated release of synadam $VERSION."
+          echo "Created release $VERSION"
