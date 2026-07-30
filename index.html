@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">synadam</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,15 +70,18 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Install from GitHub:</p>
+<p>Install the <a href="https://cran.r-project.org/package=synadam" class="external-link">CRAN</a> release version:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"synadam"</span><span class="op">)</span></span></code></pre></div>
+<p>Or install the latest, development version from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Novartis/synadam"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Novartis/synadam" class="external-link">synadam</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># 1. Auto-generate a YAML config from your ADaM directory. The config is</span></span>
@@ -92,13 +95,7 @@
 <span><span class="co"># 2. Review the generated YAML, then simulate</span></span>
 <span><span class="fu"><a href="reference/simulate_study.html">simulate_study</a></span><span class="op">(</span><span class="va">yaml_path</span><span class="op">)</span></span></code></pre></div>
 <p>Synthetic datasets are saved as individual <code>.rds</code> files (e.g., <code>syn_adsl.rds</code>, <code>syn_adlb.rds</code>) in the output directory.</p>
-</div>
-<div class="section level2">
-<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
-</h2>
-<p>For a full walkthrough including manual configuration and per-dataset control:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"synadam"</span>, package <span class="op">=</span> <span class="st">"synadam"</span><span class="op">)</span></span></code></pre></div>
+<p>Please visit the <a href="https://opensource.nibr.com/synadam/articles/synadam.html" class="external-link">documentation site</a> for more details.</p>
 </div>
 <div class="section level2">
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
@@ -114,6 +111,7 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=synadam" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/Novartis/synadam/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/Novartis/synadam/issues" class="external-link">Report a bug</a></li>
 </ul>
@@ -147,6 +145,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://opensource.nibr.com/synadam/" class="external-link"><img src="https://img.shields.io/badge/docs-pkgdown-blue.svg" alt="Documentation"></a></li>
 </ul>
 </div>
 

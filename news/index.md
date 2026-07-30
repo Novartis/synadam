@@ -1,6 +1,18 @@
 # Changelog
 
+## synadam 0.3.4
+
+### Documentation
+
+- Add CRAN installation instructions to the README
+  (`install.packages("synadam")`), keeping the GitHub install as the
+  development version.
+- Add a documentation badge and link to the pkgdown site
+  (<https://opensource.nibr.com/synadam/>) in the README.
+
 ## synadam 0.3.3
+
+CRAN release: 2026-07-22
 
 ### Infrastructure
 

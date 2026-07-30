@@ -20,7 +20,15 @@ analysis pipelines without access to real data.
 
 ## Installation
 
-Install from GitHub:
+Install the [CRAN](https://cran.r-project.org/package=synadam) release
+version:
+
+``` r
+
+install.packages("synadam")
+```
+
+Or install the latest, development version from GitHub:
 
 ``` r
 
@@ -49,15 +57,9 @@ simulate_study(yaml_path)
 Synthetic datasets are saved as individual `.rds` files (e.g.,
 `syn_adsl.rds`, `syn_adlb.rds`) in the output directory.
 
-## Documentation
-
-For a full walkthrough including manual configuration and per-dataset
-control:
-
-``` r
-
-vignette("synadam", package = "synadam")
-```
+Please visit the [documentation
+site](https://opensource.nibr.com/synadam/articles/synadam.html) for
+more details.
 
 ## Contributing
 

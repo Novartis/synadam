@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">synadam</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,15 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.3.3" id="synadam-033">synadam 0.3.3<a class="anchor" aria-label="anchor" href="#synadam-033"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.3.4" id="synadam-034">synadam 0.3.4<a class="anchor" aria-label="anchor" href="#synadam-034"></a></h2>
+<div class="section level3">
+<h3 id="documentation-0-3-4">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-3-4"></a></h3>
+<ul><li>Add CRAN installation instructions to the README (<code>install.packages("synadam")</code>), keeping the GitHub install as the development version.</li>
+<li>Add a documentation badge and link to the pkgdown site (<a href="https://opensource.nibr.com/synadam/" class="external-link uri">https://opensource.nibr.com/synadam/</a>) in the README.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.3" id="synadam-033">synadam 0.3.3<a class="anchor" aria-label="anchor" href="#synadam-033"></a></h2><p class="text-muted">CRAN release: 2026-07-22</p>
 <div class="section level3">
 <h3 id="infrastructure-0-3-3">Infrastructure<a class="anchor" aria-label="anchor" href="#infrastructure-0-3-3"></a></h3>
 <ul><li>Add pre-commit hooks for repository hygiene: <code>check-added-large-files</code> (2 MB cap, <code>--enforce-all</code>) and <code>detect-private-key</code> from <code>pre-commit/pre-commit-hooks</code> (v6.0.0), and <code>codespell</code> (v2.4.2) for spell-checking. <code>codespell</code> runs with <code>--write-changes</code> and an <code>--ignore-words-list</code> for domain terms (<code>acn</code>, <code>ths</code>); <code>renv.lock</code> and <code>release_github.sh</code> are excluded to avoid false positives on generated content and shell identifiers.</li>
