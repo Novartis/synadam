@@ -11,6 +11,9 @@ simulate(summary, output_length, seed = NULL, ...)
 # S3 method for class 'summary_treatment_flag'
 simulate(summary, ...)
 
+# S3 method for class 'summary_stratified'
+simulate(summary, strata, seed = NULL, ...)
+
 simulate(summary, ...)
 
 # S3 method for class 'summary_character'
@@ -56,6 +59,11 @@ simulate(summary, output_length, seed = NULL, ...)
 
   additional arguments passed to methods.
 
+- strata:
+
+  `vector` - stratum value per output row (e.g. PARAMCD). Every stratum
+  was seen during glimpse, so each has a child summary.
+
 ## Value
 
 `data.frame` - the simulated dataset.
@@ -67,6 +75,11 @@ simulate(summary, output_length, seed = NULL, ...)
 
 - `simulate(summary_treatment_flag)`: simulate treatment and flag
   columns by preserving exact counts for each combination.
+
+- `simulate(summary_stratified)`: simulate a stratified column (from
+  [`.glimpse_stratified()`](https://novartis.github.io/synadam/reference/dot-glimpse_stratified.md))
+  by drawing each row from its stratum's child summary, matched
+  positionally against the stored levels (NA-safe).
 
 - `simulate(summary_character)`: simulate a character vector by sampling
   from unique values.

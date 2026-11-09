@@ -1,7 +1,7 @@
-# List `ad*.sas7bdat` files in an ADaM directory.
+# List `ad*.sas7bdat` and `ad*.parquet` files in an ADaM directory.
 
-Files whose basename does not match `ad*.sas7bdat` (case-insensitive)
-are skipped with a single warning listing them.
+Files whose basename does not match `ad*.sas7bdat` or `ad*.parquet`
+(case-insensitive) are skipped with a single warning listing them.
 
 ## Usage
 
@@ -17,5 +17,5 @@ are skipped with a single warning listing them.
 
 ## Value
 
-`character` - full paths to all matching `.sas7bdat` files; errors if
-none.
+`character` - full paths to all matching `.sas7bdat` and `.parquet`
+files; errors if none.

@@ -1,8 +1,8 @@
 # Generate a draft study config YAML from a directory of ADaM files.
 
-Scans a directory of `.sas7bdat` files, infers `dataset_type` and
-per-dataset glimpse arguments using CDISC filename and column-name
-conventions, and writes a draft YAML config suitable for
+Scans a directory of `.sas7bdat` or `.parquet` files, infers
+`dataset_type` and per-dataset glimpse arguments using CDISC filename
+and column-name conventions, and writes a draft YAML config suitable for
 [`simulate_study()`](https://novartis.github.io/synadam/reference/simulate_study.md).
 Inferred fields are tagged with inline `# REVIEW` comments where the
 signal is weak so users know what to verify before running the
@@ -23,7 +23,7 @@ generate_study_config(
 
 - adam_dir:
 
-  `character(1)` - directory containing `.sas7bdat` files.
+  `character(1)` - directory containing `.sas7bdat` or `.parquet` files.
 
 - output_dir:
 
@@ -53,9 +53,9 @@ generate_study_config(
 
 ## Details
 
-Only files whose basename matches `ad*.sas7bdat` (case-insensitive) are
-considered. Any other files in `adam_dir` are skipped with a single
-warning listing them.
+Only files whose basename matches `ad*.sas7bdat` or `ad*.parquet`
+(case-insensitive) are considered. Any other files in `adam_dir` are
+skipped with a single warning listing them.
 
 ## Detection rules
 
@@ -88,9 +88,9 @@ BDS/TTE/OCCDS column signatures falls through to `"REVIEW"`:
 Errors if no ADSL file is detected;
 [`simulate_study()`](https://novartis.github.io/synadam/reference/simulate_study.md)
 requires exactly one. If multiple ADSL candidates are detected, a file
-named exactly `adsl.sas7bdat` (case-insensitive) is preferred; otherwise
-the alphabetically-first candidate is used. The picked file is kept and
-the rest are dropped with a warning.
+named exactly `adsl.sas7bdat` or `adsl.parquet` (case-insensitive) is
+preferred; otherwise the alphabetically-first candidate is used. The
+picked file is kept and the rest are dropped with a warning.
 
 ## Column-role detection
 
@@ -151,5 +151,5 @@ yaml_path <- generate_study_config(
   output_dir = file.path(tempdir(), "syn_out")
 )
 yaml_path
-#> [1] "/tmp/Rtmpm0P6Ux/syn_out/synadam_config.yaml"
+#> [1] "/tmp/Rtmp7w0ZPC/syn_out/synadam_config.yaml"
 ```

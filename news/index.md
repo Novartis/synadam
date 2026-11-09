@@ -1,5 +1,47 @@
 # Changelog
 
+## synadam 0.6.0
+
+### New features
+
+- **Parquet input.** ADaM datasets can now be read from `.parquet` files
+  as well as `.sas7bdat` files. The new
+  [`read_adam()`](https://novartis.github.io/synadam/reference/read_adam.md)
+  picks the reader from the file extension and converts blank strings to
+  `NA` for both.
+  [`glimpse_study()`](https://novartis.github.io/synadam/reference/glimpse_study.md)
+  and
+  [`simulate_study()`](https://novartis.github.io/synadam/reference/simulate_study.md)
+  use it, so a config `path` can point to either format, and
+  [`generate_study_config()`](https://novartis.github.io/synadam/reference/generate_study_config.md)
+  now also picks up `ad*.parquet` files. `arrow` is a new dependency.
+
+## synadam 0.5.0
+
+### New features
+
+- **Per-PARAMCD stratified BDS simulation.**
+  [`glimpse_bds()`](https://novartis.github.io/synadam/reference/glimpse_bds.md)/[`simulate_bds()`](https://novartis.github.io/synadam/reference/simulate_bds.md)
+  now simulate the CDISC value columns conditional on `PARAMCD` rather
+  than pooling them across all parameters. Stratification is applied
+  automatically to `AVAL`, `AVALC`, toxicity grades (`*TOXGR`/`*TOXGRN`)
+  and value categories (`AVALCATn`/`AVALCAnN`); columns named in
+  `flag_cols` are never stratified. Previously every value column was
+  drawn from one global distribution, so a parameter’s scale and
+  codelist were lost (e.g. a relative-dose-intensity percentage blended
+  with a cumulative dose in mg, and per-parameter category schemes
+  leaked across parameters). A missing (`NA`) `PARAMCD` is treated as a
+  stratum in its own right. Stratification applies to BDS only;
+  [`glimpse_tte()`](https://novartis.github.io/synadam/reference/glimpse_tte.md)
+  is unchanged.
+
+- **New `summary_stratified` class.**
+  [`glimpse_bds()`](https://novartis.github.io/synadam/reference/glimpse_bds.md)
+  stores one child summary per stratum in a `summary_stratified` object,
+  with a matching
+  [`simulate()`](https://novartis.github.io/synadam/reference/simulate.md)
+  method that draws each row from its own stratum’s summary.
+
 ## synadam 0.3.4
 
 ### Documentation

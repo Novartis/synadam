@@ -1,6 +1,9 @@
-# Wrap a string in double quotes, escaping any embedded double quotes.
+# Wrap a string in single quotes, escaping any embedded single quotes.
 
-Wrap a string in double quotes, escaping any embedded double quotes.
+Single-quoted YAML scalars do not process backslash escapes, so Windows
+paths (e.g. `C:\\Users\\...`) survive verbatim. Double quotes would
+treat backslash sequences like `\\U` as escape sequences and fail to
+parse.
 
 ## Usage
 
