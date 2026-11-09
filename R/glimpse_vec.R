@@ -183,3 +183,31 @@ glimpse_flag <- function(x, col_name) {
 
   return(summary)
 }
+
+#' Glimpse a column stratified by another column.
+#'
+#' Produces one child summary (via [glimpse()]) per stratum value, so
+#' [simulate()] can draw the column conditional on the stratum (e.g. a value
+#' per PARAMCD). NA is a legitimate stratum with its own child; strata are
+#' matched positionally (NA-safe) rather than by name.
+#'
+#' @param x `vector` - the column values.
+#' @param col_name `character` - the column name.
+#' @param strata `vector` - stratum value per element of `x` (e.g. PARAMCD).
+#' @param seed `integer` - random seed.
+#'
+#' @return `summary_stratified` - stratum levels and per-stratum children.
+#' @keywords internal
+.glimpse_stratified <- function(x, col_name, strata, seed = NULL) {
+  # levels drive positional matching on both sides; unique() keeps NA as a level
+  levels <- unique(strata)
+  idx <- match(strata, levels)
+
+  children <- lapply(seq_along(levels), function(i) {
+    glimpse(x[idx == i], col_name, na_mode = "none", seed = seed)
+  })
+
+  summary <- list(col_name = col_name, levels = levels, children = children)
+  summary <- .add_summary_class(summary, "stratified")
+  return(summary)
+}

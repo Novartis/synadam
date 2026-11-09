@@ -131,3 +131,36 @@ test_that("glimpse_flag works correctly", {
   # All N -> prop_y = 0
   expect_equal(glimpse_flag(c("N", "N"), "f")[["prop_y"]], 0)
 })
+
+test_that(".glimpse_stratified captures one child per level, in order", {
+  x <- c(10, 11, 20, 30, 12, 21)
+  strata <- c("A", "A", "B", "C", "A", "B")
+
+  gs <- synadam:::.glimpse_stratified(x, "AVAL", strata, seed = 1)
+
+  expect_s3_class(gs, "summary_stratified")
+  # levels are captured in first-appearance order, NOT sorted.
+  expect_equal(gs[["levels"]], c("A", "B", "C"))
+  # one child summary per level, aligned by position.
+  expect_equal(length(gs[["children"]]), 3)
+  expect_s3_class(gs[["children"]][[1]], "summary")
+  # child i summarizes exactly the rows of level i -- checked for every level so
+  # a mis-subset (e.g. all children summarizing level 1) is caught.
+  expect_equal(gs[["children"]][[1]][["min"]], 10) # A: 10, 11, 12
+  expect_equal(gs[["children"]][[1]][["max"]], 12)
+  expect_equal(gs[["children"]][[2]][["min"]], 20) # B: 20, 21
+  expect_equal(gs[["children"]][[2]][["max"]], 21)
+  expect_equal(gs[["children"]][[3]][["min"]], 30) # C: 30
+  expect_equal(gs[["children"]][[3]][["max"]], 30)
+})
+
+test_that(".glimpse_stratified treats NA as its own level", {
+  x <- c(1, 2, 3, 4)
+  strata <- c("A", NA, "A", NA)
+
+  gs <- synadam:::.glimpse_stratified(x, "AVAL", strata, seed = 1)
+
+  # NA is a legitimate stratum level with its own child (matched positionally).
+  expect_true(anyNA(gs[["levels"]]))
+  expect_equal(length(gs[["children"]]), 2)
+})

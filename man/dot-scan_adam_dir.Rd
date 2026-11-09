@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_study_config.R
 \name{.scan_adam_dir}
 \alias{.scan_adam_dir}
-\title{List \code{ad*.sas7bdat} files in an ADaM directory.}
+\title{List \code{ad*.sas7bdat} and \code{ad*.parquet} files in an ADaM directory.}
 \usage{
 .scan_adam_dir(adam_dir)
 }
@@ -10,11 +10,11 @@
 \item{adam_dir}{\code{character(1)} - directory to scan.}
 }
 \value{
-\code{character} - full paths to all matching \code{.sas7bdat} files;
-errors if none.
+\code{character} - full paths to all matching \code{.sas7bdat} and
+\code{.parquet} files; errors if none.
 }
 \description{
-Files whose basename does not match \code{ad*.sas7bdat} (case-insensitive)
-are skipped with a single warning listing them.
+Files whose basename does not match \code{ad*.sas7bdat} or \code{ad*.parquet}
+(case-insensitive) are skipped with a single warning listing them.
 }
 \keyword{internal}

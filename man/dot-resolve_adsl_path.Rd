@@ -16,7 +16,8 @@
 }
 \description{
 Errors if no ADSL was detected. When multiple candidates are present,
-prefers a file named exactly \code{adsl.sas7bdat} (case-insensitive); else
+prefers a file named exactly \code{adsl.sas7bdat} or \code{adsl.parquet}
+(case-insensitive); else
 falls back to the alphabetically-first candidate. The non-chosen
 candidates are reported in a warning.
 }

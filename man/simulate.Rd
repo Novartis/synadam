@@ -3,6 +3,7 @@
 \name{simulate.summary_ordered}
 \alias{simulate.summary_ordered}
 \alias{simulate.summary_treatment_flag}
+\alias{simulate.summary_stratified}
 \alias{simulate}
 \alias{simulate.summary_character}
 \alias{simulate.summary_Date}
@@ -17,6 +18,8 @@
 \method{simulate}{summary_ordered}(summary, output_length, seed = NULL, ...)
 
 \method{simulate}{summary_treatment_flag}(summary, ...)
+
+\method{simulate}{summary_stratified}(summary, strata, seed = NULL, ...)
 
 simulate(summary, ...)
 
@@ -44,6 +47,9 @@ simulate(summary, ...)
 \item{seed}{\code{integer} - random seed for reproducibility.}
 
 \item{...}{additional arguments passed to methods.}
+
+\item{strata}{\code{vector} - stratum value per output row (e.g. PARAMCD). Every
+stratum was seen during glimpse, so each has a child summary.}
 }
 \value{
 \code{data.frame} - the simulated dataset.
@@ -58,6 +64,10 @@ combinations.
 
 \item \code{simulate(summary_treatment_flag)}: simulate treatment and flag columns by preserving
 exact counts for each combination.
+
+\item \code{simulate(summary_stratified)}: simulate a stratified column (from
+\code{\link[=.glimpse_stratified]{.glimpse_stratified()}}) by drawing each row from its stratum's child
+summary, matched positionally against the stored levels (NA-safe).
 
 \item \code{simulate(summary_character)}: simulate a character vector by sampling from unique
 values.

@@ -25,3 +25,31 @@ simulate.summary_treatment_flag <- function(summary, ...) {
 
   return(syn_data)
 }
+
+#' @describeIn simulate simulate a stratified column (from
+#'   [.glimpse_stratified()]) by drawing each row from its stratum's child
+#'   summary, matched positionally against the stored levels (NA-safe).
+#'
+#' @param strata `vector` - stratum value per output row (e.g. PARAMCD). Every
+#'   stratum was seen during glimpse, so each has a child summary.
+#'
+#' @export
+simulate.summary_stratified <- function(summary, strata, seed = NULL, ...) {
+  col_name <- summary[["col_name"]]
+  idx <- match(strata, summary[["levels"]])
+  n <- length(idx)
+
+  # simulate each stratum in one shot, then scatter back to original positions
+  out <- vector("list", length = n)
+  for (i in seq_along(summary[["children"]])) {
+    pos <- which(idx == i)
+    child <- summary[["children"]][[i]]
+    sim <- simulate(child, output_length = length(pos), seed = seed)
+    out[pos] <- sim[[1]]
+  }
+
+  # value columns are only ever numeric/character, so unlist rebuilds the type
+  vals <- unlist(out, use.names = FALSE)
+  checkmate::assert_true(length(vals) == n)
+  dplyr::tibble(!!col_name := vals)
+}

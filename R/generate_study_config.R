@@ -1,14 +1,15 @@
 #' Generate a draft study config YAML from a directory of ADaM files.
 #'
-#' Scans a directory of `.sas7bdat` files, infers `dataset_type` and
-#' per-dataset glimpse arguments using CDISC filename and column-name
-#' conventions, and writes a draft YAML config suitable for `simulate_study()`.
+#' Scans a directory of `.sas7bdat` or `.parquet` files, infers
+#' `dataset_type` and per-dataset glimpse arguments using CDISC filename and
+#' column-name conventions, and writes a draft YAML config suitable for
+#' `simulate_study()`.
 #' Inferred fields are tagged with inline `# REVIEW` comments where the signal
 #' is weak so users know what to verify before running the simulation.
 #'
-#' Only files whose basename matches `ad*.sas7bdat` (case-insensitive) are
-#' considered. Any other files in `adam_dir` are skipped with a single
-#' warning listing them.
+#' Only files whose basename matches `ad*.sas7bdat` or `ad*.parquet`
+#' (case-insensitive) are considered. Any other files in `adam_dir` are
+#' skipped with a single warning listing them.
 #'
 #' @section Detection rules:
 #' Filename match (case-insensitive, basename without extension):
@@ -31,9 +32,9 @@
 #'
 #' Errors if no ADSL file is detected; `simulate_study()` requires exactly
 #' one. If multiple ADSL candidates are detected, a file named exactly
-#' `adsl.sas7bdat` (case-insensitive) is preferred; otherwise the
-#' alphabetically-first candidate is used. The picked file is kept and the
-#' rest are dropped with a warning.
+#' `adsl.sas7bdat` or `adsl.parquet` (case-insensitive) is preferred;
+#' otherwise the alphabetically-first candidate is used. The picked file is
+#' kept and the rest are dropped with a warning.
 #'
 #' @section Column-role detection:
 #' Within a classified dataset, the column-role inference picks up:
@@ -72,7 +73,8 @@
 #'     pulled in via the ADSL spine at simulation time, so listing them
 #'     here would duplicate the column.
 #'
-#' @param adam_dir `character(1)` - directory containing `.sas7bdat` files.
+#' @param adam_dir `character(1)` - directory containing `.sas7bdat` or
+#'   `.parquet` files.
 #' @param output_dir `character(1)` - directory that both the generated config
 #'   YAML and the synthetic `.rds` outputs are written to. Created recursively
 #'   if it does not exist. This same path is recorded as the top-level
@@ -116,6 +118,10 @@ generate_study_config <- function(adam_dir,
 
   cols_by_path <- stats::setNames(
     lapply(paths, function(p) {
+      if (grepl("\\.parquet$", p, ignore.case = TRUE)) {
+        # Read only the schema, not the data.
+        return(arrow::open_dataset(p)$schema$names)
+      }
       colnames(suppressWarnings(haven::read_sas(p, n_max = 0)))
     }),
     paths
@@ -176,20 +182,20 @@ generate_study_config <- function(adam_dir,
   return(output_yaml)
 }
 
-#' List `ad*.sas7bdat` files in an ADaM directory.
+#' List `ad*.sas7bdat` and `ad*.parquet` files in an ADaM directory.
 #'
-#' Files whose basename does not match `ad*.sas7bdat` (case-insensitive)
-#' are skipped with a single warning listing them.
+#' Files whose basename does not match `ad*.sas7bdat` or `ad*.parquet`
+#' (case-insensitive) are skipped with a single warning listing them.
 #'
 #' @param adam_dir `character(1)` - directory to scan.
 #'
-#' @return `character` - full paths to all matching `.sas7bdat` files;
-#'   errors if none.
+#' @return `character` - full paths to all matching `.sas7bdat` and
+#'   `.parquet` files; errors if none.
 #' @keywords internal
 .scan_adam_dir <- function(adam_dir) {
   all_paths <- list.files(adam_dir, full.names = TRUE)
   bases <- basename(all_paths)
-  is_included <- grepl("^ad.*\\.sas7bdat$", bases, ignore.case = TRUE)
+  is_included <- grepl("^ad.*\\.(sas7bdat|parquet)$", bases, ignore.case = TRUE)
   included <- all_paths[is_included]
   skipped <- bases[!is_included]
 
@@ -197,7 +203,7 @@ generate_study_config <- function(adam_dir,
     warning(
       glue::glue(
         "Skipping {length(skipped)} file(s) that do not match ",
-        "'ad*.sas7bdat': {paste(skipped, collapse = ', ')}."
+        "'ad*.sas7bdat' or 'ad*.parquet': {paste(skipped, collapse = ', ')}."
       ),
       call. = FALSE
     )
@@ -206,7 +212,7 @@ generate_study_config <- function(adam_dir,
   if (length(included) == 0) {
     stop(
       glue::glue(
-        "No ad*.sas7bdat files found in directory '{adam_dir}'."
+        "No ad*.sas7bdat or ad*.parquet files found in directory '{adam_dir}'."
       ),
       call. = FALSE
     )
@@ -567,7 +573,8 @@ generate_study_config <- function(adam_dir,
 #' Resolve the canonical ADSL path from one or more candidates.
 #'
 #' Errors if no ADSL was detected. When multiple candidates are present,
-#' prefers a file named exactly `adsl.sas7bdat` (case-insensitive); else
+#' prefers a file named exactly `adsl.sas7bdat` or `adsl.parquet`
+#' (case-insensitive); else
 #' falls back to the alphabetically-first candidate. The non-chosen
 #' candidates are reported in a warning.
 #'
@@ -591,7 +598,9 @@ generate_study_config <- function(adam_dir,
     return(adsl_paths)
   }
 
-  exact_hit <- adsl_paths[tolower(basename(adsl_paths)) == "adsl.sas7bdat"]
+  exact_hit <- adsl_paths[
+    tolower(basename(adsl_paths)) %in% c("adsl.sas7bdat", "adsl.parquet")
+  ]
   chosen <- if (length(exact_hit) >= 1) {
     exact_hit[1]
   } else {

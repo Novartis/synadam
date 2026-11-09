@@ -27,7 +27,7 @@ summaries (plus seed and version metadata) to a single \code{.rds} file.
 The resulting study summary can later be passed to
 \code{\link[=simulate_study_from_summary]{simulate_study_from_summary()}} to generate the synthetic datasets,
 decoupling the glimpse phase (which requires access to real \code{.sas7bdat}
-files) from the simulate phase.
+or \code{.parquet} files) from the simulate phase.
 }
 \examples{
 \dontshow{

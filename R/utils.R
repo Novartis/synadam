@@ -24,7 +24,44 @@
 read_sas7bdat <- function(adam_path) {
   checkmate::assert_character(adam_path, len = 1, pattern = ".sas7bdat$")
 
-  adam <- haven::read_sas(adam_path) |>
+  return(read_adam(adam_path))
+}
+
+#' Read in an ADaM dataset from a `.sas7bdat` or `.parquet` file.
+#'
+#' Loads an ADaM dataset and converts all missing values to NA.
+#'
+#' @param adam_path `character` - path to the `.sas7bdat` or `.parquet` file
+#'   containing the ADaM dataset.
+#'
+#' @return `data.frame` - ADaM dataset.
+#'
+#' @examples
+#' \dontshow{
+#' # Write a small parquet dataset to a temporary file.
+#' adsl <- read.csv(
+#'   system.file("extdata", "adsl.csv", package = "synadam"),
+#'   stringsAsFactors = FALSE
+#' )
+#' parquet_path <- tempfile(fileext = ".parquet")
+#' arrow::write_parquet(adsl, parquet_path)
+#' }
+#' adam <- read_adam(parquet_path)
+#' head(adam)
+#'
+#' @export
+read_adam <- function(adam_path) {
+  checkmate::assert_character(
+    adam_path,
+    len = 1, pattern = "\\.(sas7bdat|parquet)$"
+  )
+
+  read_fn <- if (grepl("\\.parquet$", adam_path)) {
+    arrow::read_parquet
+  } else {
+    haven::read_sas
+  }
+  adam <- read_fn(adam_path) |>
     # Convert all missing values to NA.
     dplyr::mutate(
       dplyr::across(dplyr::where(is.character), ~ dplyr::na_if(.x, ""))

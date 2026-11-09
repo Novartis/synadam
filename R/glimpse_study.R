@@ -7,7 +7,7 @@
 #' The resulting study summary can later be passed to
 #' [simulate_study_from_summary()] to generate the synthetic datasets,
 #' decoupling the glimpse phase (which requires access to real `.sas7bdat`
-#' files) from the simulate phase.
+#' or `.parquet` files) from the simulate phase.
 #'
 #' @param config_path `character` - path to YAML configuration file. Has the
 #'   same structure as the one consumed by [simulate_study()].
@@ -111,7 +111,7 @@ glimpse_study <- function(config_path, study_summary_path) {
 
     summary <- switch(dataset_type,
       "adsl" = {
-        adsl <- read_sas7bdat(dataset_config[["path"]])
+        adsl <- read_adam(dataset_config[["path"]])
         glimpse_adsl(
           adsl = adsl,
           id_cols = .as_character_or_default(
@@ -126,7 +126,7 @@ glimpse_study <- function(config_path, study_summary_path) {
         )
       },
       "bds" = {
-        bds <- read_sas7bdat(dataset_config[["path"]])
+        bds <- read_adam(dataset_config[["path"]])
         glimpse_bds(
           bds = bds,
           syn_adsl = syn_adsl,
@@ -143,7 +143,7 @@ glimpse_study <- function(config_path, study_summary_path) {
         )
       },
       "tte" = {
-        tte <- read_sas7bdat(dataset_config[["path"]])
+        tte <- read_adam(dataset_config[["path"]])
         glimpse_tte(
           tte = tte,
           syn_adsl = syn_adsl,
@@ -157,7 +157,7 @@ glimpse_study <- function(config_path, study_summary_path) {
         )
       },
       "occds" = {
-        occds <- read_sas7bdat(dataset_config[["path"]])
+        occds <- read_adam(dataset_config[["path"]])
         glimpse_occds(
           occds = occds,
           syn_adsl = syn_adsl,

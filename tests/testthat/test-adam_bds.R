@@ -201,9 +201,10 @@ test_that("glimpse_bds works without optional cols", {
   expect_equal(length(summary_minimal[["param_visits"]][["profiles"]]), 1)
   expect_equal(summary_minimal[["param_visits"]][["profile_counts"]], 4)
 
-  # AVAL should be treated as regular column, not flag
+  # AVAL is treated as a value column (not a flag) and routed to the stratified
+  # path. Per-level child structure is unit-tested in test-glimpse_vec.R.
   expect_true("AVAL" %in% names(summary_minimal))
-  expect_s3_class(summary_minimal[["AVAL"]], "summary_double")
+  expect_s3_class(summary_minimal[["AVAL"]], "summary_stratified")
 
   # Test simulation works for minimal case
   syn_bds_minimal <- suppressMessages(simulate_bds(summary_minimal))
@@ -212,6 +213,64 @@ test_that("glimpse_bds works without optional cols", {
   expect_equal(colnames(syn_bds_minimal), colnames(bds_minimal))
   expect_false(any(grepl("VISIT", colnames(syn_bds_minimal))))
   expect_false(any(grepl("FL$", colnames(syn_bds_minimal))))
+})
+
+test_that("BDS value columns are simulated per PARAMCD (stratified)", {
+  # Two parameters with disjoint AVAL scales; a global draw would blend them.
+  set.seed(1)
+  bds <- dplyr::tibble(
+    USUBJID = as.character(rep(1:30, each = 2)),
+    PARAM = rep(c("RDI (%)", "Cumulative dose (mg)"), 30),
+    PARAMCD = rep(c("RDI", "ACUMDOSE"), 30),
+    AVAL = ifelse(
+      rep(c("RDI", "ACUMDOSE"), 30) == "RDI",
+      runif(60, 80, 120),
+      runif(60, 2000, 4000)
+    )
+  )
+  syn_adsl <- dplyr::tibble(USUBJID = as.character(1:30))
+
+  gs <- suppressMessages(glimpse_bds(
+    bds, syn_adsl,
+    id_cols = "USUBJID", param_cols = c("PARAM", "PARAMCD")
+  ))
+  expect_s3_class(gs[["AVAL"]], "summary_stratified")
+
+  sim <- suppressMessages(simulate_bds(gs, seed = 1))
+  rdi <- sim$AVAL[sim$PARAMCD == "RDI"]
+  acum <- sim$AVAL[sim$PARAMCD == "ACUMDOSE"]
+
+  # Each parameter stays within (close to) its own original range and the two
+  # ranges do not overlap -- the defining property the global draw destroyed.
+  expect_true(max(rdi) < 200)
+  expect_true(min(acum) > 1000)
+  expect_true(max(rdi) < min(acum))
+})
+
+test_that("simulate_bds keeps NA-stratum rows through the spine", {
+  # A blank PARAMCD becomes NA on read (via read_sas7bdat). Regression guard:
+  # NA-stratum rows must survive the spine's bind_cols (they previously crashed
+  # with "Can't recycle" / were silently dropped). Per-stratum draw correctness
+  # is unit-tested in test-simulate_df.R.
+  set.seed(1)
+  bds <- dplyr::tibble(
+    USUBJID = as.character(rep(1:10, each = 2)),
+    PARAM = rep(c("RDI (%)", "Unknown"), 10),
+    PARAMCD = rep(c("RDI", NA), 10),
+    AVAL = runif(20)
+  )
+  syn_adsl <- dplyr::tibble(USUBJID = as.character(1:10))
+
+  gs <- suppressMessages(glimpse_bds(
+    bds, syn_adsl,
+    id_cols = "USUBJID", param_cols = c("PARAM", "PARAMCD")
+  ))
+  sim <- suppressMessages(simulate_bds(gs, seed = 1))
+
+  # No rows lost: the spine is 10 subjects x 2 profile rows, incl. the NA row.
+  expect_equal(nrow(sim), 20)
+  expect_equal(sum(is.na(sim$PARAMCD)), 10)
+  expect_false(anyNA(sim$AVAL))
 })
 
 test_that("glimpse_bds errors when SUBJID in data is missing from id_cols", {

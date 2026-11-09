@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_study_config.R
 \name{.yaml_quote}
 \alias{.yaml_quote}
-\title{Wrap a string in double quotes, escaping any embedded double quotes.}
+\title{Wrap a string in single quotes, escaping any embedded single quotes.}
 \usage{
 .yaml_quote(s)
 }
@@ -13,6 +13,8 @@
 \code{character(1)} - the YAML-quoted string.
 }
 \description{
-Wrap a string in double quotes, escaping any embedded double quotes.
+Single-quoted YAML scalars do not process backslash escapes, so Windows
+paths (e.g. \verb{C:\\\\Users\\\\...}) survive verbatim. Double quotes would treat
+backslash sequences like \verb{\\\\U} as escape sequences and fail to parse.
 }
 \keyword{internal}

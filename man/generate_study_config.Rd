@@ -12,7 +12,8 @@ generate_study_config(
 )
 }
 \arguments{
-\item{adam_dir}{\code{character(1)} - directory containing \code{.sas7bdat} files.}
+\item{adam_dir}{\code{character(1)} - directory containing \code{.sas7bdat} or
+\code{.parquet} files.}
 
 \item{output_dir}{\code{character(1)} - directory that both the generated config
 YAML and the synthetic \code{.rds} outputs are written to. Created recursively
@@ -33,16 +34,17 @@ the top-level \code{seed} field in the YAML. Defaults to \code{123}. If \code{NU
 (\code{file.path(output_dir, config_yaml_name)}).
 }
 \description{
-Scans a directory of \code{.sas7bdat} files, infers \code{dataset_type} and
-per-dataset glimpse arguments using CDISC filename and column-name
-conventions, and writes a draft YAML config suitable for \code{simulate_study()}.
+Scans a directory of \code{.sas7bdat} or \code{.parquet} files, infers
+\code{dataset_type} and per-dataset glimpse arguments using CDISC filename and
+column-name conventions, and writes a draft YAML config suitable for
+\code{simulate_study()}.
 Inferred fields are tagged with inline \verb{# REVIEW} comments where the signal
 is weak so users know what to verify before running the simulation.
 }
 \details{
-Only files whose basename matches \code{ad*.sas7bdat} (case-insensitive) are
-considered. Any other files in \code{adam_dir} are skipped with a single
-warning listing them.
+Only files whose basename matches \code{ad*.sas7bdat} or \code{ad*.parquet}
+(case-insensitive) are considered. Any other files in \code{adam_dir} are
+skipped with a single warning listing them.
 }
 \section{Detection rules}{
 
@@ -70,9 +72,9 @@ variable in ADaM; \code{EVNTDESC} is conventional but not universal)
 
 Errors if no ADSL file is detected; \code{simulate_study()} requires exactly
 one. If multiple ADSL candidates are detected, a file named exactly
-\code{adsl.sas7bdat} (case-insensitive) is preferred; otherwise the
-alphabetically-first candidate is used. The picked file is kept and the
-rest are dropped with a warning.
+\code{adsl.sas7bdat} or \code{adsl.parquet} (case-insensitive) is preferred;
+otherwise the alphabetically-first candidate is used. The picked file is
+kept and the rest are dropped with a warning.
 }
 
 \section{Column-role detection}{

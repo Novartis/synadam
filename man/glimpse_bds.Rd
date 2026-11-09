@@ -47,7 +47,11 @@ vector naming columns whose combinations should be preserved e.g.
 Summarizes a BDS (Basic Data Structure) e.g. ADLB, ADVS dataset for synthetic
 simulation by extracting per-subject parameter/visit profiles, preserving
 relationships with ADSL columns, and extracting summaries of all other
-variables. All PARAMCDs in the dataset are included.
+variables. All PARAMCDs in the dataset are included. The analysis value and
+category columns (\code{AVAL}, \code{AVALC}, toxicity grades \verb{*TOXGR}/\verb{*TOXGRN}, and
+value categories \code{AVALCATn}/\code{AVALCAnN}) are summarised per \code{PARAMCD}, so each
+parameter reproduces its own distribution rather than one pooled across all
+parameters.
 }
 \examples{
 \dontshow{

@@ -3,7 +3,11 @@
 #' Summarizes a BDS (Basic Data Structure) e.g. ADLB, ADVS dataset for synthetic
 #' simulation by extracting per-subject parameter/visit profiles, preserving
 #' relationships with ADSL columns, and extracting summaries of all other
-#' variables. All PARAMCDs in the dataset are included.
+#' variables. All PARAMCDs in the dataset are included. The analysis value and
+#' category columns (`AVAL`, `AVALC`, toxicity grades `*TOXGR`/`*TOXGRN`, and
+#' value categories `AVALCATn`/`AVALCAnN`) are summarised per `PARAMCD`, so each
+#' parameter reproduces its own distribution rather than one pooled across all
+#' parameters.
 #'
 #' @param bds `data.frame` - input BDS dataset e.g. ADLB.
 #' @param id_cols `character` - ID column names that identify subjects e.g.
@@ -97,11 +101,20 @@ glimpse_bds <- function(
     cols_to_summarise <- setdiff(cols_to_summarise, col_set)
   }
 
-  # Glimpse each remaining column
+  # Glimpse each remaining column. The CDISC value columns have
+  # parameter-specific scales, so they are glimpsed once per PARAMCD rather than
+  # pooled across parameters. Flag columns are handled first, never stratified.
   for (col in cols_to_summarise) {
     message(glue::glue("Glimpsing column(s): {col}"))
     bds_summary[[col]] <- if (col %in% flag_cols) {
       glimpse_flag(bds[[col]], col)
+    } else if (
+      col %in% c("AVAL", "AVALC") ||
+        grepl("TOXGR[N]?$", col) ||
+        grepl("^AVALCAT[0-9]+$", col) ||
+        grepl("^AVALCA[0-9]+N$", col)
+    ) {
+      .glimpse_stratified(bds[[col]], col, bds[["PARAMCD"]], seed)
     } else {
       glimpse(bds[[col]], col, na_mode = "none", seed = seed)
     }
@@ -186,6 +199,7 @@ simulate_bds <- function(bds_summary, seed = NULL) {
     !(names(bds_summary) %in% c("param_visits", "adsl_cols"))
   ]
 
+  # Stratified value columns are drawn conditional on the spine's PARAMCD.
   syn_bds <- vector("list", length = length(bds_summary_remaining))
   for (i in seq_along(bds_summary_remaining)) {
     message(
@@ -194,11 +208,12 @@ simulate_bds <- function(bds_summary, seed = NULL) {
         "{.format_columns(names(bds_summary)[i])}"
       )
     )
-    syn_bds[[i]] <- simulate(
-      bds_summary_remaining[[i]],
-      output_length = nrow(bds_spine),
-      seed = seed
-    )
+    summ <- bds_summary_remaining[[i]]
+    syn_bds[[i]] <- if (inherits(summ, "summary_stratified")) {
+      simulate(summ, strata = bds_spine[["PARAMCD"]], seed = seed)
+    } else {
+      simulate(summ, output_length = nrow(bds_spine), seed = seed)
+    }
   }
   syn_bds <- syn_bds |> dplyr::bind_cols(bds_spine)
 
